@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="PhisX - AI-powered email threat detection system"
+    >
+
+    <title>PhisX | Email Threat Detector</title>
+
+    <!-- Main stylesheet -->
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+</head>
+
+<body>
+
+    <!-- =================================================
+         BACKGROUND GRID
+         ================================================= -->
+
+    <div class="background-grid"></div>
+
+    <!-- =================================================
+         MAIN APPLICATION
+         ================================================= -->
+
+    <main class="app-container">
+
+        <!-- =================================================
+             HEADER
+             ================================================= -->
+
+        <header class="top-header">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    PX
+                </div>
+
+                <div class="brand-text">
+
+                    <h1>PhisX</h1>
+
+                    <p>
+                        AI-POWERED EMAIL THREAT DETECTOR
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <span>
+                    SYSTEM ONLINE
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             INTRO / TERMINAL BAR
+             ================================================= -->
+
+        <section class="terminal-bar">
+
+            <span class="terminal-symbol">&gt;_</span>
+
+            <span>
+                THREAT ANALYSIS TERMINAL
+            </span>
+
+            <span class="terminal-status">
+                READY
+            </span>
+
+        </section>
+
+
+        <!-- =================================================
+             EMAIL ANALYSIS PANEL
+             ================================================= -->
+
+        <section class="analysis-panel">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-number">
+                        01
+                    </span>
+
+                    <h2>
+                        EMAIL INPUT
+                    </h2>
+                </div>
+
+                <span class="section-label">
+                    ANALYSIS TARGET
+                </span>
+
+            </div>
+
+
+            <!-- Sender -->
+
+            <div class="form-group">
+
+                <label for="sender">
+                    SENDER
+                </label>
+
+                <input
+                    type="email"
+                    id="sender"
+                    name="sender"
+                    placeholder="sender@example.com"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- Subject -->
+
+            <div class="form-group">
+
+                <label for="subject">
+                    SUBJECT
+                </label>
+
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="Enter email subject..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- Email body -->
+
+            <div class="form-group">
+
+                <label for="body">
+                    EMAIL BODY
+                </label>
+
+                <textarea
+                    id="body"
+                    name="body"
+                    rows="10"
+                    placeholder="Paste the email body here..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- Character counter -->
+
+            <div class="input-meta">
+
+                <span>
+                    STATIC ANALYSIS MODE
+                </span>
+
+                <span id="character-count">
+                    0 characters
+                </span>
+
+            </div>
+
+
+            <!-- Analyze button -->
+
+            <button
+                id="analyze-button"
+                class="analyze-button"
+                type="button"
+            >
+
+                <span class="button-icon">
+                    ⚡
+                </span>
+
+                <span>
+                    ANALYZE EMAIL
+                </span>
+
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             SCANNING STATE
+             ================================================= -->
+
+        <section
+            id="scanning-panel"
+            class="scanning-panel hidden"
+        >
+
+            <div class="scanner-header">
+
+                <span class="scanner-icon">
+                    ◈
+                </span>
+
+                <span>
+                    SCANNING EMAIL...
+                </span>
+
+            </div>
+
+
+            <div class="scanner-terminal">
+
+                <p>
+                    <span>&gt;</span>
+                    Analyzing content
+                    <span class="scan-check">
+                        ...
+                    </span>
+                </p>
+
+                <p>
+                    <span>&gt;</span>
+                    Inspecting sender
+                    <span class="scan-check">
+                        ...
+                    </span>
+                </p>
+
+                <p>
+                    <span>&gt;</span>
+                    Extracting URLs
+                    <span class="scan-check">
+                        ...
+                    </span>
+                </p>
+
+                <p>
+                    <span>&gt;</span>
+                    Calculating threat score
+                    <span class="scan-check">
+                        ...
+                    </span>
+                </p>
+
+            </div>
+
+
+            <div class="scanner-progress">
+
+                <div
+                    id="scanner-progress-bar"
+                    class="scanner-progress-bar"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ERROR PANEL
+             ================================================= -->
+
+        <section
+            id="error-panel"
+            class="error-panel hidden"
+        >
+
+            <div class="error-icon">
+                ⚠
+            </div>
+
+            <div>
+
+                <h3>
+                    ANALYSIS ERROR
+                </h3>
+
+                <p id="error-message">
+                    Unable to analyze the email.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RESULTS DASHBOARD
+             ================================================= -->
+
+        <section
+            id="results-panel"
+            class="results-panel hidden"
+        >
+
+            <!-- =================================================
+                 RESULT HEADER
+                 ================================================= -->
+
+            <div class="results-header">
+
+                <div>
+
+                    <span class="section-number">
+                        02
+                    </span>
+
+                    <h2>
+                        THREAT ASSESSMENT
+                    </h2>
+
+                </div>
+
+                <span
+                    id="result-status"
+                    class="result-status"
+                >
+                    ANALYSIS COMPLETE
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 SCORE DISPLAY
+                 ================================================= -->
+
+            <div class="score-card">
+
+                <div class="score-info">
+
+                    <span class="score-label">
+                        THREAT SCORE
+                    </span>
+
+                    <div class="score-value">
+
+                        <span id="risk-score">
+                            0
+                        </span>
+
+                        <span class="score-max">
+                            / 100
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="risk-level"
+                        class="risk-level"
+                    >
+                        SAFE
+                    </div>
+
+                    <div
+                        id="classification"
+                        class="classification"
+                    >
+                        SAFE
+                    </div>
+
+                </div>
+
+
+                <!-- Circular score visual -->
+
+                <div class="score-ring">
+
+                    <div class="score-ring-inner">
+
+                        <span id="score-ring-value">
+                            0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SIGNAL CARDS
+                 ================================================= -->
+
+            <div class="signals-grid">
+
+                <!-- Content -->
+
+                <article class="signal-card">
+
+                    <div class="signal-card-header">
+
+                        <span>
+                            CONTENT
+                        </span>
+
+                        <span
+                            id="content-score"
+                            class="signal-score"
+                        >
+                            0 / 40
+                        </span>
+
+                    </div>
+
+                    <div class="signal-bar">
+
+                        <div
+                            id="content-bar"
+                            class="signal-bar-fill"
+                        ></div>
+
+                    </div>
+
+                    <p id="content-summary">
+                        No content analysis performed.
+                    </p>
+
+                </article>
+
+
+                <!-- Sender -->
+
+                <article class="signal-card">
+
+                    <div class="signal-card-header">
+
+                        <span>
+                            SENDER
+                        </span>
+
+                        <span
+                            id="sender-score"
+                            class="signal-score"
+                        >
+                            0 / 25
+                        </span>
+
+                    </div>
+
+                    <div class="signal-bar">
+
+                        <div
+                            id="sender-bar"
+                            class="signal-bar-fill"
+                        ></div>
+
+                    </div>
+
+                    <p id="sender-summary">
+                        No sender analysis performed.
+                    </p>
+
+                </article>
+
+
+                <!-- URLs -->
+
+                <article class="signal-card">
+
+                    <div class="signal-card-header">
+
+                        <span>
+                            URL
+                        </span>
+
+                        <span
+                            id="url-score"
+                            class="signal-score"
+                        >
+                            0 / 35
+                        </span>
+
+                    </div>
+
+                    <div class="signal-bar">
+
+                        <div
+                            id="url-bar"
+                            class="signal-bar-fill"
+                        ></div>
+
+                    </div>
+
+                    <p id="url-summary">
+                        No URLs detected.
+                    </p>
+
+                </article>
+
+            </div>
+
+
+            <!-- =================================================
+                 THREAT INDICATORS
+                 ================================================= -->
+
+            <section class="result-section">
+
+                <div class="result-section-heading">
+
+                    <span class="result-icon">
+                        ⚠
+                    </span>
+
+                    <h3>
+                        THREAT INDICATORS
+                    </h3>
+
+                </div>
+
+
+                <div
+                    id="threat-indicators"
+                    class="threat-indicators"
+                >
+
+                    <!--
+                        Findings are inserted dynamically
+                        by script.js.
+                    -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SECURITY ASSESSMENT
+                 ================================================= -->
+
+            <section class="result-section">
+
+                <div class="result-section-heading">
+
+                    <span class="result-icon">
+                        ◈
+                    </span>
+
+                    <h3>
+                        SECURITY ASSESSMENT
+                    </h3>
+
+                </div>
+
+
+                <div
+                    id="security-assessment"
+                    class="assessment-box"
+                >
+
+                    <!-- Explanation inserted by JavaScript -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 RECOMMENDED ACTION
+                 ================================================= -->
+
+            <section class="result-section">
+
+                <div class="result-section-heading">
+
+                    <span class="result-icon">
+                        !
+                    </span>
+
+                    <h3>
+                        RECOMMENDED ACTION
+                    </h3>
+
+                </div>
+
+
+                <div
+                    id="recommendations"
+                    class="recommendations-box"
+                >
+
+                    <!-- Recommendations inserted by JavaScript -->
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ANALYZE ANOTHER EMAIL
+                 ================================================= -->
+
+            <button
+                id="new-analysis-button"
+                class="secondary-button"
+                type="button"
+            >
+
+                <span>
+                    ↻
+                </span>
+
+                ANALYZE ANOTHER EMAIL
+
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             FOOTER
+             ================================================= -->
+
+        <footer class="app-footer">
+
+            <div>
+                PhisX // MVP
+            </div>
+
+            <div>
+                STATIC EMAIL THREAT ANALYSIS
+            </div>
+
+            <div>
+                <span class="footer-dot"></span>
+                SYSTEM READY
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <!-- Main JavaScript -->
+    <script src="/script.js"></script>
+
+</body>
+
+</html>
