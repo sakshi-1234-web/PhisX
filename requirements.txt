@@ -1,2 +1,4 @@
-flask
-gunicorn app:app
+Flask
+gunicorn
+python-dotenv
+requests
